@@ -9,7 +9,24 @@
 
 <body>
     <a-scene>
-        <a-box position="0 1.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <!-- ground -->
+        <a-plane rotation="-90 0 0" width="30" height="30" color="#7BC8A4"></a-plane>
+
+        <!-- temple on the right -->
+        <a-entity position="4 0 -5">
+            <a-box width="4" depth="4" height="0.5" color="#AAA"></a-box>
+            <a-cylinder position="-1 1 1" radius="0.1" height="2" color="#fff"></a-cylinder>
+            <a-cylinder position="1 1 1" radius="0.1" height="2" color="#fff"></a-cylinder>
+            <a-cylinder position="-1 1 -1" radius="0.1" height="2" color="#fff"></a-cylinder>
+            <a-cylinder position="1 1 -1" radius="0.1" height="2" color="#fff"></a-cylinder>
+            <a-cone position="0 2.5 0" radius-bottom="2.5" height="1" color="#D9B382"></a-cone>
+        </a-entity>
+
+        <!-- field and stage on the left -->
+        <a-plane position="-6 0 -5" rotation="-90 0 0" width="8" height="8" color="#4CAF50"></a-plane>
+        <a-box position="-6 0.25 -5" width="4" depth="4" height="0.5" color="#795548"></a-box>
+
+        <!-- sky and camera -->
         <a-sky color="#ECECEC"></a-sky>
         <a-camera position="0 1.6 0"></a-camera>
     </a-scene>

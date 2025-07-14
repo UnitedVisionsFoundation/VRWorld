@@ -1,0 +1,30 @@
+name: Update PR Preview Pages
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate PR preview pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash scripts/update_pr_pages.sh
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain pr.html latest-pr.html)" ]; then
+            git add pr.html latest-pr.html
+            git commit -m "Update PR preview pages"
+            git push
+          else
+            echo "No changes to commit"
+          fi
